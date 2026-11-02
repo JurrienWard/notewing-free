@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d16">
+  <meta name="description" content="A free, interactive guitar improvisation and practice studio.">
+  <title>NoteWing — Guitar Practice Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="dashboard"><span class="brand-mark">N</span><span>notewing<span class="brand-dot">.</span><small>GUITAR STUDIO</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-page="learn"><span>▤</span> Learning path <i class="nav-count">5</i></button>
+        <button class="nav-item" data-page="practice"><span>♫</span> Song practice</button>
+        <button class="nav-item" data-page="builder"><span>✳</span> Solo builder</button>
+        <button class="nav-item" data-page="fretboard"><span>⌁</span> Fretboard & scales</button>
+      </nav>
+      <div class="side-label">TOOLBOX</div>
+      <nav class="nav-list" aria-label="Guitar tools">
+        <button class="nav-item" data-page="tuner"><span>◉</span> Chromatic tuner</button>
+        <button class="nav-item" data-page="chords"><span>▦</span> Chord library</button>
+        <button class="nav-item" data-page="ear"><span>◖</span> Ear training</button>
+        <button class="nav-item" data-page="metronome"><span>◷</span> Metronome</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-streak"><span class="flame">✦</span><div><b id="side-streak">0 day streak</b><small>Keep your momentum</small></div></div>
+        <button class="nav-item" data-page="profile"><span>◌</span> Your profile</button>
+        <div class="sidebar-foot">FREE GUITAR PRACTICE<br><span>Made for curious players.</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menu-toggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">Studio <span>/</span> <b id="crumb">Dashboard</b></div>
+        <div class="top-actions"><span class="today" id="today-label"></span><div class="avatar" id="avatar">G</div></div>
+      </header>
+      <div class="page-wrap">
+        <section class="page active" id="page-dashboard">
+          <div class="welcome-row"><div><div class="eyebrow">YOUR PRACTICE SPACE</div><h1>Make music.<br><span>Find your voice.</span></h1><p class="muted">Small, consistent sessions build confident improvisers. Pick up where you left off.</p></div><div class="welcome-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-pick">✳</div><span class="art-note n1">♪</span><span class="art-note n2">♫</span></div></div>
+          <div class="stats-grid">
+            <article class="stat-card"><span class="stat-icon purple">✦</span><div class="stat-label">TOTAL XP</div><strong id="stat-xp">0</strong><small>Earn XP as you practise</small></article>
+            <article class="stat-card"><span class="stat-icon orange">↗</span><div class="stat-label">DAY STREAK</div><strong id="stat-streak">0 days</strong><small>Practice a little each day</small></article>
+            <article class="stat-card"><span class="stat-icon blue">◷</span><div class="stat-label">PRACTICE TIME</div><strong id="stat-minutes">0 min</strong><small>Time spent in the studio</small></article>
+            <article class="stat-card"><span class="stat-icon green">✓</span><div class="stat-label">LESSONS DONE</div><strong id="stat-lessons">0 / 5</strong><small>Keep moving through the path</small></article>
+          </div>
+          <div class="section-heading"><div><div class="eyebrow">PICK UP THE GUITAR</div><h2>Today's focus</h2></div><button class="text-btn" data-page="learn">View learning path ↗</button></div>
+          <div class="focus-card"><div class="focus-number">01</div><div class="focus-copy"><span class="tag">SUGGESTED SESSION · 10 MIN</span><h3>Make the changes sing</h3><p>Practise a short melodic phrase over a ii–V–I progression. Focus on landing on chord tones.</p><div class="progress-line"><span id="focus-progress"></span></div><small id="focus-progress-label">Your learning path is ready</small></div><button class="primary-btn" data-page="learn">Start session <span>→</span></button></div>
+          <div class="two-col">
+            <div class="panel"><div class="panel-head"><div><div class="eyebrow">YOUR JOURNEY</div><h3>Learning path</h3></div><span class="subtle">5 units</span></div><div id="dashboard-units" class="unit-list"></div></div>
+            <div class="panel"><div class="panel-head"><div><div class="eyebrow">RECENT ACTIVITY</div><h3>Practice log</h3></div><button class="text-btn" data-page="profile">View all</button></div><div id="recent-activity" class="activity-list"><div class="empty-state">Your sessions will show up here.</div></div></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-learn">
+          <div class="page-intro"><div class="eyebrow">BUILD YOUR VOCABULARY</div><h1>Learning <span>path.</span></h1><p class="muted">Five focused units take you from understanding a phrase to making it your own.</p></div>
+          <div class="learning-layout"><div class="unit-list large" id="learning-units"></div><div class="panel lesson-detail" id="lesson-detail"><div class="eyebrow">YOUR NEXT LESSON</div><h2>Start with a phrase</h2><p class="muted">Choose a unit to explore the lesson, see the tab and practise it on your guitar.</p><div class="lesson-art">♪</div></div></div>
+        </section>
+
+        <section class="page" id="page-practice">
+          <div class="page-intro"><div class="eyebrow">PUT IT IN CONTEXT</div><h1>Song <span>practice.</span></h1><p class="muted">Play original backing progressions, hear the harmony and test your timing.</p></div>
+          <div class="practice-grid"><div class="panel practice-main"><div class="panel-head"><div><div class="eyebrow">ORIGINAL BACKING TRACK</div><h2 id="track-title">Midnight Changes</h2></div><span class="tag live-tag">● LIVE SESSION</span></div><p class="muted" id="track-description">A relaxed ii–V–I in C major. Try the phrase from Unit 1.</p><div class="chord-timeline" id="chord-timeline"></div><div class="track-controls"><button class="play-btn" id="track-play">▶</button><div class="track-info"><b id="track-status">Ready when you are</b><small>Generated in your browser · no audio files</small></div><label class="tempo-control">BPM <input id="track-bpm" type="number" min="50" max="180" value="90"></label></div><div class="track-progress"><span id="track-progress"></span></div><div class="control-row"><label>Backing progression<select id="track-select"><option value="midnight">Midnight Changes · C major</option><option value="slowblues">Slow Blues · A minor</option><option value="sunrise">Sunrise · G major</option></select></label><label>Volume<input id="track-volume" type="range" min="0" max="100" value="45"></label></div></div>
+            <div class="panel score-panel"><div class="eyebrow">PLAY-ALONG CHALLENGE</div><h3>Find the chord tones</h3><p class="muted">Listen to the progression, then try to land on the 3rd or 7th of each chord.</p><div class="score-ring"><div><strong id="score-value">—</strong><small>YOUR SCORE</small></div></div><button class="secondary-btn full" id="start-score">Start listening challenge</button><small class="hint">Microphone access is optional. The browser will ask permission when you start.</small></div></div>
+          <div class="panel tips-panel"><div class="panel-head"><h3>Practice notes</h3><span class="tag">TRY THIS</span></div><div class="tip-grid"><div><b>01 · Hear the movement</b><p>Sing the root notes before playing. Notice how each chord pulls towards the next.</p></div><div><b>02 · Keep it simple</b><p>Use three or four notes. Rhythm and phrasing matter more than speed.</p></div><div><b>03 · Resolve with intention</b><p>Try ending your phrase on the 3rd of the I chord for a clear sense of arrival.</p></div></div></div>
+        </section>
+
+        <section class="page" id="page-builder">
+          <div class="page-intro"><div class="eyebrow">MAKE IT YOURS</div><h1>Solo <span>builder.</span></h1><p class="muted">Compose an original eight-bar idea. Select notes, hear your melody and save your draft locally.</p></div>
+          <div class="panel builder-panel"><div class="builder-toolbar"><div><div class="eyebrow">8-BAR CANVAS</div><h2>Your melody</h2></div><div class="toolbar-actions"><button class="secondary-btn" id="clear-solo">Clear</button><button class="secondary-btn" id="play-solo">▶ Play solo</button><button class="primary-btn" id="save-solo">Save draft</button></div></div><div class="bar-labels" id="bar-labels"></div><div class="note-grid-wrap"><div class="note-labels" id="note-labels"></div><div class="note-grid" id="note-grid"></div></div><div class="builder-bottom"><div><b id="note-count">0 notes selected</b><small>Tap a cell to add or remove a note. One note per beat.</small></div><label>Key<select id="solo-key"><option>C major</option><option>G major</option><option>D major</option><option>A minor</option><option>E minor</option></select></label></div></div>
+          <div class="panel"><div class="panel-head"><h3>Ideas to get started</h3><span class="subtle">Original prompts</span></div><div class="prompt-chips"><button data-pattern="ascending">Ascending motif</button><button data-pattern="call">Call & response</button><button data-pattern="pentatonic">Pentatonic run</button></div></div>
+        </section>
+
+        <section class="page" id="page-fretboard">
+          <div class="page-intro"><div class="eyebrow">KNOW YOUR NECK</div><h1>Fretboard <span>explorer.</span></h1><p class="muted">Explore notes, scales and positions across all six strings.</p></div>
+          <div class="panel fretboard-panel"><div class="control-row"><label>Root note<select id="scale-root"><option>C</option><option>C#</option><option>D</option><option>D#</option><option>E</option><option>F</option><option>F#</option><option>G</option><option>G#</option><option>A</option><option>A#</option><option>B</option></select></label><label>Scale<select id="scale-type"><option value="major">Major (Ionian)</option><option value="minor">Natural minor</option><option value="pentatonic">Minor pentatonic</option><option value="blues">Blues</option><option value="majorpent">Major pentatonic</option><option value="dorian">Dorian</option></select></label><label>Show<select id="fret-display"><option value="scale">Scale tones</option><option value="all">All notes</option><option value="root">Root notes only</option></select></label></div><div class="fretboard-scroll"><div class="fretboard" id="fretboard"></div></div><div class="legend"><span><i class="dot root-dot"></i> Root</span><span><i class="dot scale-dot"></i> Scale tone</span><span><i class="dot"></i> Other note</span></div><div class="scale-summary" id="scale-summary"></div></div>
+          <div class="panel"><div class="panel-head"><h3>How to use this scale</h3><span class="tag">TIP</span></div><p class="muted" id="scale-tip">Start by playing the root note on each string. Then move through the scale slowly, saying each note name aloud.</p></div>
+        </section>
+
+        <section class="page" id="page-tuner">
+          <div class="page-intro"><div class="eyebrow">GET IN TUNE</div><h1>Chromatic <span>tuner.</span></h1><p class="muted">Use your device microphone to detect a note and guide you towards standard tuning.</p></div>
+          <div class="tuner-layout"><div class="panel tuner-panel"><div class="tuner-top"><span class="tag">STANDARD TUNING · E A D G B E</span><span id="mic-state" class="subtle">Microphone off</span></div><div class="tuner-note"><strong id="tuner-note">—</strong><span id="tuner-octave">Play a note</span></div><div class="tuner-meter"><div class="meter-center"></div><div class="meter-needle" id="tuner-needle"></div></div><div class="tuner-cents" id="tuner-cents">0 cents</div><div class="tuner-message" id="tuner-message">Allow microphone access, then play one string at a time.</div><button class="primary-btn" id="tuner-start">Start tuner</button><small class="hint">For best results, use headphones only for backing tracks, not while tuning. Works over HTTPS or localhost.</small></div><div class="panel tuning-reference"><div class="eyebrow">STANDARD TUNING</div><h3>Reference notes</h3><div class="string-list"><div><b>6</b><strong>E₂</strong><span>82.41 Hz</span></div><div><b>5</b><strong>A₂</strong><span>110.00 Hz</span></div><div><b>4</b><strong>D₃</strong><span>146.83 Hz</span></div><div><b>3</b><strong>G₃</strong><span>196.00 Hz</span></div><div><b>2</b><strong>B₃</strong><span>246.94 Hz</span></div><div><b>1</b><strong>E₄</strong><span>329.63 Hz</span></div></div><button class="secondary-btn full" id="tuning-standard">Show standard tuning on fretboard</button></div></div>
+        </section>
+
+        <section class="page" id="page-chords">
+          <div class="page-intro"><div class="eyebrow">HARMONY TOOLKIT</div><h1>Chord <span>library.</span></h1><p class="muted">Explore useful guitar voicings and learn which notes give each chord its character.</p></div>
+          <div class="chord-layout"><div class="panel chord-selector"><div class="control-row"><label>Root<select id="chord-root"></select></label><label>Quality<select id="chord-quality"><option value="maj">Major</option><option value="min">Minor</option><option value="7">Dominant 7</option><option value="maj7">Major 7</option><option value="min7">Minor 7</option><option value="sus2">Sus2</option><option value="sus4">Sus4</option></select></label></div><div id="chord-display"></div></div><div class="panel chord-info"><div class="eyebrow">UNDERSTAND THE SOUND</div><h2 id="chord-name">C major</h2><p class="muted" id="chord-description">A bright, stable sound built from a root, major third and perfect fifth.</p><div class="chord-tones" id="chord-tones"></div><div class="chord-actions"><button class="primary-btn" id="hear-chord">♫ Hear chord</button><button class="secondary-btn" id="random-chord">Surprise me</button></div></div></div>
+        </section>
+
+        <section class="page" id="page-ear">
+          <div class="page-intro"><div class="eyebrow">TRAIN YOUR INNER EAR</div><h1>Ear <span>training.</span></h1><p class="muted">Build the connection between what you hear and what your hands play.</p></div>
+          <div class="ear-layout"><div class="panel ear-panel"><div class="eyebrow">INTERVAL IDENTIFICATION</div><h2>What interval did you hear?</h2><p class="muted">Listen to two notes, then choose the interval between them.</p><div class="ear-play-area"><div class="ear-wave">∿</div><button class="play-btn large-play" id="play-interval">▶</button><small id="ear-status">Ready for your first question</small></div><div class="interval-options" id="interval-options"><button data-interval="0">Perfect unison</button><button data-interval="2">Major 2nd</button><button data-interval="4">Major 3rd</button><button data-interval="5">Perfect 4th</button><button data-interval="7">Perfect 5th</button><button data-interval="12">Octave</button></div><div class="ear-feedback" id="ear-feedback"></div><button class="secondary-btn full" id="next-interval">New question</button></div><div class="panel ear-side"><div class="eyebrow">YOUR SESSION</div><h3>Interval practice</h3><div class="ear-score"><strong id="ear-correct">0</strong><span>correct</span><strong id="ear-total">0</strong><span>answered</span></div><div class="progress-line"><span id="ear-progress"></span></div><p class="muted">Tip: Try singing the first note, then the second. Notice how far your voice has to move.</p></div></div>
+        </section>
+
+        <section class="page" id="page-metronome">
+          <div class="page-intro"><div class="eyebrow">FIND YOUR POCKET</div><h1>Metro<span>nome.</span></h1><p class="muted">A simple tempo tool for slow, deliberate practice or building speed.</p></div>
+          <div class="panel metronome-panel"><div class="tempo-display"><span id="metro-bpm">80</span><small>BPM</small></div><div class="beat-lights" id="beat-lights"><i></i><i></i><i></i><i></i></div><div class="tempo-slider"><button id="tempo-down">−</button><input id="tempo-range" type="range" min="40" max="220" value="80"><button id="tempo-up">+</button></div><div class="tempo-presets"><button data-bpm="60">Slow · 60</button><button data-bpm="80">Moderate · 80</button><button data-bpm="100">Walking · 100</button><button data-bpm="120">Upbeat · 120</button></div><button class="primary-btn metro-start" id="metro-toggle">Start metronome</button><div class="control-row metro-options"><label>Beats per bar<select id="beats-per-bar"><option>4</option><option>3</option><option>6</option><option>2</option></select></label><label>Accent first beat<select id="metro-accent"><option value="yes">On</option><option value="no">Off</option></select></label></div></div>
+        </section>
+
+        <section class="page" id="page-profile">
+          <div class="page-intro"><div class="eyebrow">YOUR PROGRESS, YOUR WAY</div><h1>Player <span>profile.</span></h1><p class="muted">Your practice history is saved on this device. No account or subscription required.</p></div>
+          <div class="profile-hero panel"><div class="profile-avatar">G</div><div><div class="eyebrow">GUITAR PLAYER</div><h2 id="profile-name">Guitarist</h2><p class="muted">Learning at your own pace · Local profile</p></div><button class="secondary-btn" id="edit-name">Edit name</button></div>
+          <div class="stats-grid"><article class="stat-card"><div class="stat-label">TOTAL XP</div><strong id="profile-xp">0</strong></article><article class="stat-card"><div class="stat-label">PRACTICE MINUTES</div><strong id="profile-minutes">0</strong></article><article class="stat-card"><div class="stat-label">BEST STREAK</div><strong id="profile-streak">0 days</strong></article><article class="stat-card"><div class="stat-label">SOLOS SAVED</div><strong id="profile-solos">0</strong></article></div>
+          <div class="two-col"><div class="panel"><div class="panel-head"><h3>Achievements</h3><span class="subtle">Keep going</span></div><div id="achievements" class="achievement-list"></div></div><div class="panel"><div class="panel-head"><h3>Practice history</h3><button class="text-btn" id="export-data">Export data ↓</button></div><div id="history-list" class="activity-list"></div><button class="danger-btn" id="reset-data">Reset all local data</button></div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
